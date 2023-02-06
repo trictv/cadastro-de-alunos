@@ -1,0 +1,50 @@
+﻿@model IEnumerable<p2.Models.Nota>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="nomes">Notas Alunos</h3>
+
+<p>
+    <a asp-action="Create" class="cor1">Cadastrar Notas</a>
+</p>
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                <div>@Html.DisplayNameFor(model => model.Notas)</div><div class="th-pesquisar"><i class="fa fa-search"><input type="search" placeholder="Pesquisar..." /></i></div>
+            </th>
+            <th scope="col">
+                <div>@Html.DisplayNameFor(model => model.Aluno)</div><div class="th-pesquisar"><i class="fa fa-search"><input type="search" placeholder="Pesquisar..." /></i></div>
+            </th>
+            <th>
+                <div>@Html.DisplayNameFor(model => model.Disciplina)</div><div class="th-pesquisar"><i class="fa fa-search"><input type="search" placeholder="Pesquisar..." /></i></div>
+            </th>
+            <th scope="col">
+                Alterações:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aluno.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
+            </td>
+            <td>
+                <a asp-action="Edit" class="fa fa-pencil" asp-route-id="@item.Id"></a> |
+                <a asp-action="Details" class="fa fa-info-circle" asp-route-id="@item.Id"></a> |
+                <a asp-action="Delete" class="fa fa-trash" asp-route-id="@item.Id"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

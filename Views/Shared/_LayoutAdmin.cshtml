@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html >
+
+<head class="corFundo">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/login.css" rel="stylesheet" />
+    <style>
+        .table th {
+            background-color: silver;
+            border: 1px solid white;
+            font-size: 14px;
+            text-shadow: 1px 1px 1px white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table td {
+            background-color: white;
+        }
+
+        .cor {
+            background-color: silver;
+            color: black;
+        }
+
+        .corr {
+            background-color: silver;
+            color: red;
+        }
+        .cor1{
+            color:purple;
+        }
+    </style>
+</head>
+<body >
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 cor" style="text-align: right;">
+                <i class="fa fa-user-circle-o cor" aria-hidden="true"> Usuário Logado:</i>
+
+                <a class="cor"> @HttpContextAccessor.HttpContext.Session.GetString("NomeUsuarioLogado") </a>
+                <label></label> -
+                <a asp-controller="Principal" class="fa fa-sign-out corr" asp-action="Logout">Sair</a>
+            </div>
+            <div><hr></div>
+        </div>
+        <div class="row display-6">
+            <div class="col-12 bac">
+                <a class="fa fa-users nomes cor1" asp-controller="Alunos" asp-action="Index">Alunos</a> |
+                <a class="fa fa-solid fa-book nomes cor1" asp-controller="Disciplinas" asp-action="Index">Disciplinas</a>|
+                <a class="fa fa-sticky-note-o nomes cor1" asp-controller="Notas" asp-action="Index">Notas</a>|
+                <a class="fa fa-user nomes cor1" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+            </div>
+
+        </div>
+        <div class="row">
+            @RenderBody()
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

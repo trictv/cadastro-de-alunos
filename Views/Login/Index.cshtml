@@ -1,0 +1,58 @@
+﻿@model p2.Models.Usuario
+@{
+    Layout = null;
+   
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css">
+    <link href="~/css/login.css" rel="stylesheet" />
+   
+
+</head>
+<body>
+    <div>
+       
+        <p class="text-center">
+            <input type="text" class="nomes text-center" disabled name="name" value="Patrick Santos Trindade" />
+            <input type="text" class="nomes text-center" disabled name="name" value="Alexandre Rocha Lopes" />
+        </p>
+        
+    </div>
+    <div class="wrapper">
+
+        <div class="logo">
+            <img src="~/fotos/Imagem do WhatsApp de 2022-12-04 à(s) 11.59.04.jpg" alt="">
+        </div>
+        <div class="logo">
+            <img src="~/fotos/Imagem do WhatsApp de 2022-12-04 à(s) 11.59.13.jpg" alt="">
+        </div>
+
+        <div class="text-center mt-4 name">
+            Administrativo
+        </div>
+        <form class="p-3 mt-3" asp-controller="Login" asp-action="Logar" method="post">
+            <div style="color: red">@ViewBag.ErrorLogin</div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fa fa-user"></span>
+                <input type="text" asp-for="Login" id="userName" placeholder="usuário">
+                <div style="color: red">@Html.ValidationMessageFor(x => x.Login)</div>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fa fa-key"></span>
+                <input type="password" asp-for="Senha" id="pwd" placeholder="senha">
+                <div style="color: red">@Html.ValidationMessageFor(x => x.Senha)</div>
+            </div>
+            <button class="btn mt-3" type="submit">Login</button>
+        </form>
+    </div>
+</body>
+
+
+
+</html>
